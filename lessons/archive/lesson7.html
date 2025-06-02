@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 11: The Lightning Network - Bitcoin Newbie</title>
+    <title>Lesson 7: Sending and Receiving Bitcoin - Bitcoin Newbie</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -20,7 +20,6 @@
                     <li><a href="../lessons.html" class="active">Lessons</a></li>
                     <li><a href="../about.html">About</a></li>
                     <li><a href="../contact.html">Contact</a></li>
-                    <li><a href="../donate.html">Donate</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,67 +27,57 @@
 
     <section class="page-header">
         <div class="container">
-            <h1>Lesson 11: The Lightning Network</h1>
-            <p>Learn about Bitcoin's super-fast express lane!</p>
+            <h1>Lesson 7: Sending and Receiving Bitcoin</h1>
+            <p>Find out how to send Bitcoin to friends and family!</p>
         </div>
     </section>
 
     <section class="lesson-detail">
         <div class="container">
             <div class="lesson-content">
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <img src="../assets/lesson-images/lesson11-lightning-network.png" alt="Lightning Network" style="max-width: 80%; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                </div>
-                
-                <p>The Lightning Network is like an express lane for Bitcoin. It lets you send small amounts of Bitcoin super fast and with very tiny fees. It's perfect for buying small things like candy or video games!</p>
+                <p>Sending Bitcoin is like sending a digital letter that only the person you're sending it to can open. Each person has an "address" (like an email address but for Bitcoin) where you can send Bitcoin to them.</p>
                 
                 <div class="key-points">
                     <h3>Key Points:</h3>
                     <ul>
-                        <li>The Lightning Network works on top of Bitcoin</li>
-                        <li>It makes small payments fast and cheap</li>
-                        <li>You can send tiny fractions of Bitcoin</li>
-                        <li>More and more apps and websites use Lightning</li>
+                        <li>Bitcoin addresses look like a long string of letters and numbers</li>
+                        <li>You need someone's address to send them Bitcoin</li>
+                        <li>Once you send Bitcoin, you can't take it back</li>
+                        <li>Transactions usually take about 10 minutes to confirm</li>
                     </ul>
                 </div>
                 
-                <p>Remember how we learned that Bitcoin transactions usually take about 10 minutes to confirm? That's fine for big payments, but what if you just want to buy a candy bar or tip someone a tiny amount of Bitcoin? That's where the Lightning Network comes in!</p>
+                <p>To send Bitcoin to someone, you need their Bitcoin address. This is a long string of letters and numbers that looks something like this: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
                 
-                <p>Think of the regular Bitcoin network like a big highway where all cars (transactions) have to drive together. The Lightning Network is like a system of small side roads that connect to the main highway. These side roads let small cars zoom around quickly without getting stuck in traffic.</p>
+                <p>You can think of a Bitcoin address like a mailbox where only the owner has the key. Anyone can put Bitcoin into the mailbox (by sending it to the address), but only the person with the key (from their wallet) can take Bitcoin out.</p>
                 
-                <p>With Lightning, you can send Bitcoin almost instantly - as fast as sending a text message! And the fees are super tiny, sometimes less than a penny.</p>
+                <p>When you send Bitcoin, your wallet creates a special message that tells the Bitcoin network: "Move X amount of Bitcoin from my address to this other address." This message is signed with your private key to prove it's really you making the request.</p>
                 
-                <p>The Lightning Network also lets you send very small amounts of Bitcoin - even just a few cents worth. This is great for things like:</p>
-                <ul>
-                    <li>Buying small items like candy or stickers</li>
-                    <li>Paying for online games or videos</li>
-                    <li>Sending small tips to people you appreciate</li>
-                    <li>Using Bitcoin-powered apps and games</li>
-                </ul>
+                <p>Once you send Bitcoin, you can't cancel it or take it back. It's like dropping a letter in a mailbox - once it's in, you can't reach in and grab it back! This is why it's super important to double-check the address you're sending to before you hit send.</p>
                 
-                <p>More and more apps, games, and websites are starting to use the Lightning Network, making Bitcoin more useful for everyday things!</p>
+                <p>Bitcoin transactions usually take about 10 minutes to confirm. This is because miners (remember them from the last lesson?) need to include your transaction in a block.</p>
             </div>
             
             <div class="quiz-section">
                 <h3>Test Your Knowledge</h3>
                 
                 <div class="quiz-question">
-                    <p>1. What is the Lightning Network?</p>
+                    <p>1. What do you need to send someone Bitcoin?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option" data-correct="false">a) A weather app</div>
-                        <div class="quiz-option" data-correct="true">b) A fast way to send small amounts of Bitcoin</div>
-                        <div class="quiz-option" data-correct="false">c) A type of Bitcoin wallet</div>
-                        <div class="quiz-option" data-correct="false">d) A computer game</div>
+                        <div class="quiz-option" data-correct="false">a) Their email address</div>
+                        <div class="quiz-option" data-correct="false">b) Their phone number</div>
+                        <div class="quiz-option" data-correct="true">c) Their Bitcoin address</div>
+                        <div class="quiz-option" data-correct="false">d) Their home address</div>
                     </div>
                 </div>
                 
                 <div class="quiz-question">
-                    <p>2. Why is the Lightning Network useful?</p>
+                    <p>2. Can you cancel a Bitcoin transaction after you send it?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option" data-correct="true">a) It makes Bitcoin transactions faster and cheaper</div>
-                        <div class="quiz-option" data-correct="false">b) It creates more Bitcoin</div>
-                        <div class="quiz-option" data-correct="false">c) It makes your computer run faster</div>
-                        <div class="quiz-option" data-correct="false">d) It helps you find lost Bitcoin</div>
+                        <div class="quiz-option" data-correct="false">a) Yes, anytime</div>
+                        <div class="quiz-option" data-correct="false">b) Yes, within 24 hours</div>
+                        <div class="quiz-option" data-correct="true">c) No, once it's sent it can't be taken back</div>
+                        <div class="quiz-option" data-correct="false">d) Only if the other person agrees</div>
                     </div>
                 </div>
                 
@@ -103,8 +92,8 @@
             </div>
             
             <div class="lesson-navigation">
-                <a href="lesson10.html" class="btn btn-secondary">Previous Lesson</a>
-                <a href="lesson12.html" class="btn btn-primary">Next Lesson</a>
+                <a href="lesson6.html" class="btn btn-secondary">Previous Lesson</a>
+                <a href="lesson8.html" class="btn btn-primary">Next Lesson</a>
             </div>
         </div>
     </section>
