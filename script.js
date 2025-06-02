@@ -1,4 +1,4 @@
-// JavaScript for Bitcoin Newbie website
+// JavaScript for Bitcoin Tutors website
 document.addEventListener('DOMContentLoaded', function() {
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
