@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Sending and Receiving Bitcoin - Bitcoin Newbie</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../assets/bitcoin_logo_roblox.png" alt="Bitcoin Newbie Logo">
+                <h1>Bitcoin Newbie</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../lessons.html" class="active">Lessons</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Lesson 7: Sending and Receiving Bitcoin</h1>
+            <p>Find out how to send Bitcoin to friends and family!</p>
+        </div>
+    </section>
+
+    <section class="lesson-detail">
+        <div class="container">
+            <div class="lesson-content">
+                <p>Sending Bitcoin is like sending a digital letter that only the person you're sending it to can open. Each person has an "address" (like an email address but for Bitcoin) where you can send Bitcoin to them.</p>
+                
+                <div class="key-points">
+                    <h3>Key Points:</h3>
+                    <ul>
+                        <li>Bitcoin addresses look like a long string of letters and numbers</li>
+                        <li>You need someone's address to send them Bitcoin</li>
+                        <li>Once you send Bitcoin, you can't take it back</li>
+                        <li>Transactions usually take about 10 minutes to confirm</li>
+                    </ul>
+                </div>
+                
+                <p>To send Bitcoin to someone, you need their Bitcoin address. This is a long string of letters and numbers that looks something like this: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                
+                <p>You can think of a Bitcoin address like a mailbox where only the owner has the key. Anyone can put Bitcoin into the mailbox (by sending it to the address), but only the person with the key (from their wallet) can take Bitcoin out.</p>
+                
+                <p>When you send Bitcoin, your wallet creates a special message that tells the Bitcoin network: "Move X amount of Bitcoin from my address to this other address." This message is signed with your private key to prove it's really you making the request.</p>
+                
+                <p>Once you send Bitcoin, you can't cancel it or take it back. It's like dropping a letter in a mailbox - once it's in, you can't reach in and grab it back! This is why it's super important to double-check the address you're sending to before you hit send.</p>
+                
+                <p>Bitcoin transactions usually take about 10 minutes to confirm. This is because miners (remember them from the last lesson?) need to include your transaction in a block.</p>
+            </div>
+            
+            <div class="quiz-section">
+                <h3>Test Your Knowledge</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What do you need to send someone Bitcoin?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">a) Their email address</div>
+                        <div class="quiz-option" data-correct="false">b) Their phone number</div>
+                        <div class="quiz-option" data-correct="true">c) Their Bitcoin address</div>
+                        <div class="quiz-option" data-correct="false">d) Their home address</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>2. Can you cancel a Bitcoin transaction after you send it?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">a) Yes, anytime</div>
+                        <div class="quiz-option" data-correct="false">b) Yes, within 24 hours</div>
+                        <div class="quiz-option" data-correct="true">c) No, once it's sent it can't be taken back</div>
+                        <div class="quiz-option" data-correct="false">d) Only if the other person agrees</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-result">
+                    <p>You got <span id="quizScore">0</span> out of <span id="quizTotal">2</span> correct!</p>
+                </div>
+                
+                <div class="quiz-buttons">
+                    <button id="submitQuiz" class="btn btn-primary">Check Answers</button>
+                    <button id="retryQuiz" class="btn btn-secondary" style="display: none;">Try Again</button>
+                </div>
+            </div>
+            
+            <div class="lesson-navigation">
+                <a href="lesson6.html" class="btn btn-secondary">Previous Lesson</a>
+                <a href="lesson8.html" class="btn btn-primary">Next Lesson</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../assets/bitcoin_logo_roblox.png" alt="Bitcoin Newbie Logo">
+                    <h3>Bitcoin Newbie</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../lessons.html">Lessons</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../lessons.html">All Lessons</a></li>
+                        <li><a href="../about.html#faq">FAQ</a></li>
+                        <li><a href="../about.html#glossary">Bitcoin Words</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bitcoin Newbie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

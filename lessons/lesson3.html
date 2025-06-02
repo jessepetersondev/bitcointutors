@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: How Bitcoin Works - Bitcoin Newbie</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../assets/bitcoin_logo_roblox.png" alt="Bitcoin Newbie Logo">
+                <h1>Bitcoin Newbie</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../lessons.html" class="active">Lessons</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Lesson 3: How Bitcoin Works - The Blockchain</h1>
+            <p>Learn about the blockchain - Bitcoin's special notebook!</p>
+        </div>
+    </section>
+
+    <section class="lesson-detail">
+        <div class="container">
+            <div class="lesson-content">
+                <p>Bitcoin works using something called a blockchain. Think of the blockchain like a special notebook where every Bitcoin transaction is written down. This notebook isn't kept in one place - thousands of computers around the world have a copy, so nobody can cheat or change the records!</p>
+                
+                <div class="key-points">
+                    <h3>Key Points:</h3>
+                    <ul>
+                        <li>The blockchain is like a digital notebook that records all Bitcoin transactions</li>
+                        <li>Thousands of computers around the world keep copies of this notebook</li>
+                        <li>Once something is written in the blockchain, it can't be erased or changed</li>
+                        <li>This makes Bitcoin very secure and trustworthy</li>
+                    </ul>
+                </div>
+                
+                <p>Imagine if you and your friends were playing a game, and you needed to keep track of who had how many points. If only one person wrote down the scores, they might cheat! But what if everyone had their own copy of the score sheet, and everyone had to agree on any changes? That would make cheating almost impossible!</p>
+                
+                <p>That's how the blockchain works. When someone sends Bitcoin to another person, this transaction is grouped together with other recent transactions into a "block." This block is then added to the chain of all previous blocks - that's why it's called a "blockchain!"</p>
+                
+                <p>The really cool part is that once a block is added to the blockchain, it can't be changed or removed. It's there forever! This means no one can fake transactions or pretend they have more Bitcoin than they really do.</p>
+                
+                <p>This system makes Bitcoin very secure and trustworthy, even though there's no bank or company in charge of it. It's all done by computers working together and following the same rules!</p>
+            </div>
+            
+            <div class="quiz-section">
+                <h3>Test Your Knowledge</h3>
+                
+                <div class="quiz-question">
+                    <p>1. What is the blockchain?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">a) A type of digital coin</div>
+                        <div class="quiz-option" data-correct="true">b) A special notebook that records all Bitcoin transactions</div>
+                        <div class="quiz-option" data-correct="false">c) A computer game</div>
+                        <div class="quiz-option" data-correct="false">d) A type of bank</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p>2. Why is the blockchain secure?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">a) Because it has a password</div>
+                        <div class="quiz-option" data-correct="false">b) Because the government protects it</div>
+                        <div class="quiz-option" data-correct="true">c) Because thousands of computers keep copies of it</div>
+                        <div class="quiz-option" data-correct="false">d) Because only rich people can use it</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-result">
+                    <p>You got <span id="quizScore">0</span> out of <span id="quizTotal">2</span> correct!</p>
+                </div>
+                
+                <div class="quiz-buttons">
+                    <button id="submitQuiz" class="btn btn-primary">Check Answers</button>
+                    <button id="retryQuiz" class="btn btn-secondary" style="display: none;">Try Again</button>
+                </div>
+            </div>
+            
+            <div class="lesson-navigation">
+                <a href="lesson2.html" class="btn btn-secondary">Previous Lesson</a>
+                <a href="lesson4.html" class="btn btn-primary">Next Lesson</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../assets/bitcoin_logo_roblox.png" alt="Bitcoin Newbie Logo">
+                    <h3>Bitcoin Newbie</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../lessons.html">Lessons</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../lessons.html">All Lessons</a></li>
+                        <li><a href="../about.html#faq">FAQ</a></li>
+                        <li><a href="../about.html#glossary">Bitcoin Words</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bitcoin Newbie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
