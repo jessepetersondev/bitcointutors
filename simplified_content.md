@@ -387,7 +387,7 @@ There are many myths about Bitcoin. Some people think it's only for computer exp
 1. Is Bitcoin only for computer experts?
    a) Yes, you need a computer science degree
    b) No, anyone can learn to use it
-   c) Yes, it's too complicated for kids
+   c) Yes, it's too complicated for most people
    d) Only for math geniuses
 
 2. Is most Bitcoin used for illegal activities?
@@ -441,7 +441,7 @@ No one knows exactly what will happen with Bitcoin in the future, but many peopl
    d) Nothing would change
 
 ## Lesson 21: Getting Started with Bitcoin
-If you're interested in Bitcoin, there are safe ways for kids to learn more with their parents' help. You can start by learning, using small amounts, and exploring kid-friendly Bitcoin apps and games.
+If you're interested in Bitcoin, there are safe ways for you to learn more. You can start by learning, using small amounts, and exploring friendly Bitcoin apps and games.
 
 **Key Points:**
 - Always learn about Bitcoin with your parents
@@ -450,14 +450,14 @@ If you're interested in Bitcoin, there are safe ways for kids to learn more with
 - Learning about Bitcoin now could be very valuable for your future
 
 **Quiz:**
-1. How should kids get started with Bitcoin?
+1. How should you get started with Bitcoin?
    a) By investing their life savings
-   b) By learning with their parents and using small amounts
+   b) By learning using small amounts
    c) By keeping it secret from adults
    d) By mining Bitcoin on the family computer
 
-2. Why might learning about Bitcoin be valuable for kids?
+2. Why might learning about Bitcoin be valuable for you?
    a) Because they can get rich quick
-   b) Because it might be an important skill for their future
+   b) Because it might be an important skill in the future
    c) Because it will make them popular
    d) Because it will help them in video games
