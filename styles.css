@@ -1476,33 +1476,3 @@ footer:before {
   outline: 3px solid rgba(247, 147, 26, 0.5);
   outline-offset: 2px;
 }
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: var(--off-black);
-    --text-color: #e0e0e0;
-    --card-bg: var(--dark-gray);
-    --light-gray: var(--medium-gray);
-  }
-  
-  .feature-card,
-  .lesson-card,
-  .lesson-content,
-  .about-content,
-  .faq-item,
-  .glossary-item,
-  .contact-form,
-  .quiz-section {
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .quiz-option {
-    background: var(--medium-gray);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .quiz-option:hover {
-    background-color: var(--dark-gray);
-  }
-}
