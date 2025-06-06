@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Defender - Space Shooter Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen" class="screen">
+            <h1>Bitcoin Defender</h1>
+            <p>Defend Bitcoin against financial obstacles!</p>
+            <button id="start-button">Start Game</button>
+            <div class="instructions">
+                <h2>How to Play:</h2>
+                <p>Move: Arrow Keys or Touch/Drag</p>
+                <p>Shoot: Spacebar or Tap Button</p>
+                <p>Collect power-ups and destroy enemies</p>
+                <p>Learn about Bitcoin as you play!</p>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <canvas id="game-canvas"></canvas>
+            <div id="mobile-controls" class="hidden">
+                <div id="move-left"></div>
+                <div id="move-right"></div>
+                <div id="shoot-button"></div>
+            </div>
+            <div id="game-ui">
+                <div id="score">Score: 0</div>
+                <div id="level">Level: 1</div>
+                <div id="lives"></div>
+            </div>
+            <button id="pause-button">Pause</button>
+        </div>
+
+        <div id="level-screen" class="screen hidden">
+            <h2>Level <span id="level-num">1</span> Complete!</h2>
+            <div id="bitcoin-fact" class="bitcoin-fact"></div>
+            <button id="continue-button">Continue</button>
+        </div>
+
+        <div id="pause-screen" class="screen hidden">
+            <h2>Game Paused</h2>
+            <button id="resume-button">Resume</button>
+            <button id="restart-button">Restart</button>
+            <div class="sound-control">
+                <label for="sound-toggle">Sound:</label>
+                <input type="checkbox" id="sound-toggle" checked>
+            </div>
+            <div id="pause-fact" class="bitcoin-fact"></div>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <h2>Game Over</h2>
+            <div id="final-score">Score: 0</div>
+            <div id="high-score">High Score: 0</div>
+            <button id="restart-button-end">Play Again</button>
+            <button id="menu-button-end">Main Menu</button>
+        </div>
+
+        <div id="victory-screen" class="screen hidden">
+            <h2>Victory!</h2>
+            <p>You've successfully defended Bitcoin!</p>
+            <div id="victory-score">Score: 0</div>
+            <div id="victory-message" class="bitcoin-fact">
+                Bitcoin was created in 2009 as a response to the financial crisis, offering a decentralized alternative to traditional banking systems.
+            </div>
+            <button id="restart-button-victory">Play Again</button>
+            <button id="menu-button-victory">Main Menu</button>
+        </div>
+
+        <div id="popup" class="hidden">
+            <div id="popup-content"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
