@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Defender Game - Bitcoin Newbie</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .game-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2 );
+        }
+        
+        .game-instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/bitcoin_logo_roblox.png" alt="Bitcoin Newbie Logo">
+                <h1>Bitcoin Newbie</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="lessons.html">Lessons</a></li>
+                    <li><a href="game.html" class="game-link active">Play Game</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>Bitcoin Defender Game</h2>
+            <p>Defend Bitcoin against financial obstacles in this fun space shooter!</p>
+        </div>
+    </section>
+
+    <section class="game-container">
+        <iframe src="games/bitcoin-defender/index.html" class="game-frame" allowfullscreen></iframe>
+        
+        <div class="game-instructions">
+            <h3>How to Play</h3>
+            <p><strong>Desktop Controls:</strong> Use arrow keys to move and spacebar to shoot.</p>
+            <p><strong>Mobile Controls:</strong> Touch the left/right areas to move and the center button to shoot.</p>
+            <p>Destroy financial obstacles, collect power-ups, and learn about Bitcoin concepts!</p>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Footer content (same as other pages) -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
