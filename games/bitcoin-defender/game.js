@@ -155,7 +155,29 @@ function init() {
     canvas.height = CANVAS_HEIGHT;
     
     // Load assets
-    loadAssets()
+    assets.player.src = 'assets/bitcoin_ship.png';
+    assets.bullet.src = 'assets/blockchain_bullet.png';
+    
+    // Enemy assets
+    assets.enemies.inflation.src = 'assets/inflation_monster.png';
+    assets.enemies.fud.src = 'assets/fud_cloud.png';
+    assets.enemies.bank.src = 'assets/bank_enemy.png';
+    assets.enemies.regulation.src = 'assets/regulation_barrier.png';
+    assets.enemies.altcoin.src = 'assets/altcoin_enemy.png';
+    assets.enemies.volatility.src = 'assets/volatility.png';
+    assets.enemies.media.src = 'assets/media.png';
+    assets.enemies.scams.src = 'assets/scams.png';
+    assets.enemies.energy.src = 'assets/energy.png';
+    assets.enemies.fear.src = 'assets/fear.png';
+    
+    // Powerup assets
+    assets.powerups.lightning.src = 'assets/lightning_powerup.png';
+    assets.powerups.hardware.src = 'assets/hardware_wallet.png';
+    assets.powerups.coldStorage.src = 'assets/powups/coldStorage.png';
+    assets.powerups.multiSig.src = 'assets/multiSig.png';
+    assets.powerups.DCA.src = 'assets/DCA.png';
+    assets.powerups.openSource.src = 'assets/openSource.png';
+    assets.powerups.education.src = 'assets/education.png';
     
     // Set up event listeners
     setupEventListeners();
