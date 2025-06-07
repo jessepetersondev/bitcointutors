@@ -79,14 +79,24 @@ const assets = {
         fud: new Image(),
         bank: new Image(),
         regulation: new Image(),
-        altcoin: new Image()
+        altcoin: new Image(),
+        volatility: new Image(),
+        media: new Image(),
+        scams: new Image(),
+        energy: new Image(),
+        fear: new Image()
     },
     powerups: {
         lightning: new Image(),
         hardware: new Image(),
         mining: new Image(),
         satoshi: new Image(),
-        node: new Image()
+        node: new Image(),
+        coldStorage: new Image(),
+        multiSig: new Image(),
+        DCA: new Image(),
+        openSource: new Image(),
+        education: new Image()
     },
     background: new Image()
 };
@@ -136,9 +146,6 @@ const enemyFacts = {
 const powerupFacts = {
     lightning: "The Lightning Network enables fast, low-cost Bitcoin payments by creating off-chain channels—ideal for daily use and micro-transactions.",
     hardware: "Hardware wallets like Ledger and Trezor store your private keys offline, offering the highest level of security against hacks.",
-    mining: "Bitcoin mining not only mints new coins but also validates transactions and secures the network through proof-of-work.",
-    satoshi: "Satoshi Nakamoto launched Bitcoin in 2009 and mined the first block, the Genesis Block, which contains a message referencing the 2008 bailout.",
-    node: "Running a Bitcoin node gives you full control over your Bitcoin experience and helps verify the blockchain independently.",
     coldStorage: "Cold storage keeps your Bitcoin private keys offline, protecting them from online attacks.",
     multiSig: "Multisignature (multisig) wallets require multiple approvals to move funds—ideal for shared custody or added protection.",
     DCA: "Dollar-cost averaging (DCA) is a strategy of regularly buying Bitcoin over time, regardless of price, to reduce the impact of volatility.",
@@ -155,29 +162,7 @@ function init() {
     canvas.height = CANVAS_HEIGHT;
     
     // Load assets
-    assets.player.src = 'assets/bitcoin_ship.png';
-    assets.bullet.src = 'assets/blockchain_bullet.png';
-    
-    // Enemy assets
-    assets.enemies.inflation.src = 'assets/inflation_monster.png';
-    assets.enemies.fud.src = 'assets/fud_cloud.png';
-    assets.enemies.bank.src = 'assets/bank_enemy.png';
-    assets.enemies.regulation.src = 'assets/regulation_barrier.png';
-    assets.enemies.altcoin.src = 'assets/altcoin_enemy.png';
-    assets.enemies.volatility.src = 'assets/volatility.png';
-    assets.enemies.media.src = 'assets/media.png';
-    assets.enemies.scams.src = 'assets/scams.png';
-    assets.enemies.energy.src = 'assets/energy.png';
-    assets.enemies.fear.src = 'assets/fear.png';
-    
-    // Powerup assets
-    assets.powerups.lightning.src = 'assets/lightning_powerup.png';
-    assets.powerups.hardware.src = 'assets/hardware_wallet.png';
-    assets.powerups.coldStorage.src = 'assets/powups/coldStorage.png';
-    assets.powerups.multiSig.src = 'assets/multiSig.png';
-    assets.powerups.DCA.src = 'assets/DCA.png';
-    assets.powerups.openSource.src = 'assets/openSource.png';
-    assets.powerups.education.src = 'assets/education.png';
+    loadAssets()
     
     // Set up event listeners
     setupEventListeners();
@@ -188,8 +173,8 @@ function init() {
     // Show start screen
     showScreen('start-screen');
 }
+
 function loadAssets() {
-    // Player and bullet assets
     assets.player.src = 'assets/bitcoin_ship.png';
     assets.bullet.src = 'assets/blockchain_bullet.png';
     
