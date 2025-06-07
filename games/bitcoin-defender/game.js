@@ -193,7 +193,6 @@ function loadAssets() {
     // Powerup assets
     assets.powerups.lightning.src = 'assets/lightning_powerup.png';
     assets.powerups.hardware.src = 'assets/hardware_wallet.png';
-    assets.powerups.coldStorage.src = 'assets/powups/coldStorage.png';
     assets.powerups.multiSig.src = 'assets/multiSig.png';
     assets.powerups.DCA.src = 'assets/DCA.png';
     assets.powerups.openSource.src = 'assets/openSource.png';
