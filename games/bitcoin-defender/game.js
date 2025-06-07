@@ -94,37 +94,56 @@ const assets = {
 // Educational content
 // CHANGE 2: Added more Bitcoin facts
 const bitcoinFacts = [
-    "Bitcoin has a fixed supply of 21 million coins, making it scarce like gold.",
-    "Bitcoin transactions are verified by a decentralized network of computers around the world.",
-    "The smallest unit of Bitcoin is called a 'satoshi' - there are 100 million satoshis in 1 Bitcoin.",
-    "Bitcoin's blockchain is a public ledger that records all transactions transparently.",
-    "Bitcoin was created in 2009 as a response to the financial crisis.",
-    "Bitcoin's creator, Satoshi Nakamoto, remains anonymous to this day.",
-    "Bitcoin mining uses computational power to secure the network through proof-of-work.",
-    "The Bitcoin whitepaper was published on October 31, 2008.",
-    "Bitcoin's code is open-source, allowing anyone to review and contribute to it.",
-    "The first Bitcoin transaction was for two pizzas, costing 10,000 BTC.",
-    "Bitcoin has a halving event approximately every four years, reducing mining rewards.",
-    "There are Bitcoin ATMs in over 80 countries worldwide.",
-    "El Salvador became the first country to adopt Bitcoin as legal tender in 2021.",
-    "The Lightning Network is a second layer solution that makes Bitcoin transactions faster and cheaper.",
-    "Bitcoin's price is determined by supply and demand in the market."
+    "Bitcoin has a fixed supply of 21 million coins, making it scarce like gold. This programmed scarcity is designed to prevent inflation and increase value over time.",
+    "Bitcoin transactions are verified by a decentralized network of computers around the world, ensuring censorship resistance and trustless validation.",
+    "The smallest unit of Bitcoin is called a 'satoshi'—there are 100 million satoshis in 1 Bitcoin, allowing for micro-transactions.",
+    "Bitcoin's blockchain is a public ledger that records all transactions transparently and immutably.",
+    "Bitcoin was created in 2009 as a response to the 2008 financial crisis, offering an alternative to centralized monetary systems.",
+    "Bitcoin's creator, Satoshi Nakamoto, remains anonymous and has never spent their estimated 1 million BTC.",
+    "Bitcoin mining uses computational power to secure the network through a consensus mechanism called proof-of-work.",
+    "The Bitcoin whitepaper was published on October 31, 2008, outlining the vision for decentralized digital money.",
+    "Bitcoin's code is open-source, allowing anyone to view, audit, and contribute to its ongoing development.",
+    "The first real-world Bitcoin transaction bought two pizzas for 10,000 BTC in May 2010—an event now celebrated as Bitcoin Pizza Day.",
+    "Bitcoin experiences a halving event every 210,000 blocks (about every 4 years), reducing miner rewards and reinforcing scarcity.",
+    "There are Bitcoin ATMs across more than 80 countries, allowing easy access to buy and sell BTC with cash.",
+    "El Salvador became the first country to adopt Bitcoin as legal tender in 2021, aiming to promote financial inclusion.",
+    "The Lightning Network is a second-layer protocol that makes Bitcoin transactions nearly instant and extremely low-cost.",
+    "Bitcoin’s price is determined by supply and demand in open markets, free from centralized price control.",
+    "Bitcoin is borderless—anyone with an internet connection can send and receive it without needing a bank account.",
+    "You can hold your own Bitcoin without any third party, using a private key—a level of ownership not possible with fiat currency.",
+    "Bitcoin can never be inflated because the issuance schedule is hard-coded into its protocol.",
+    "Bitcoin is censorship-resistant—no government or corporation can stop a valid transaction from being broadcast.",
+    "Bitcoin is pseudonymous—not tied to real-world identities by default, but fully traceable on the public blockchain.",
+    "Bitcoin transactions can’t be reversed—this reduces fraud and chargeback risk for merchants.",
+    "Some countries ban Bitcoin, but people still use it underground because it's resilient and hard to stop.",
+    "Bitcoin is being used in humanitarian crises to store value and make international transfers when banks fail.",
+    "Bitcoin has inspired thousands of other cryptocurrencies, but it remains the most decentralized and secure."
 ];
 
 const enemyFacts = {
-    inflation: "Inflation devalues fiat currency over time, while Bitcoin has a fixed supply.",
-    fud: "Don't let FUD (Fear, Uncertainty, Doubt) affect your Bitcoin decisions.",
-    bank: "Bitcoin removes the need for centralized financial institutions.",
-    regulation: "Bitcoin operates globally despite varying regulations.",
-    altcoin: "Bitcoin was the first cryptocurrency and remains the most secure."
+    inflation: "Inflation devalues fiat currency over time by increasing the money supply. Bitcoin has a hard cap, making it a deflationary asset.",
+    fud: "FUD (Fear, Uncertainty, Doubt) often comes from those who don't understand or feel threatened by Bitcoin. Research and critical thinking defeat FUD.",
+    bank: "Bitcoin allows users to be their own bank, removing reliance on centralized financial institutions.",
+    regulation: "Bitcoin operates globally and cannot be shut down by any one government. It adapts to local regulations while remaining decentralized.",
+    altcoin: "Bitcoin is the original and most secure cryptocurrency, often imitated but never surpassed in decentralization and network strength.",
+    volatility: "Bitcoin's price volatility is natural for a young, growing asset. Over time, adoption helps reduce sharp fluctuations.",
+    media: "Mainstream media often misrepresents Bitcoin. It's important to seek independent, fact-based sources for accurate information.",
+    scams: "Bitcoin is neutral—scammers may use it like cash, but the network itself is secure. Use trusted tools and never share your private keys.",
+    energy: "Critics say Bitcoin wastes energy, but it's more efficient than traditional banking and often uses renewable power sources.",
+    fear: "Many are afraid of what they don’t understand. Educating yourself about Bitcoin's principles turns fear into empowerment."
 };
 
 const powerupFacts = {
-    lightning: "Lightning Network enables fast Bitcoin transactions with minimal fees.",
-    hardware: "Hardware wallets are the most secure way to store Bitcoin.",
-    mining: "Mining secures the Bitcoin network through proof-of-work.",
-    satoshi: "Satoshi Nakamoto created Bitcoin in 2009.",
-    node: "Running a node helps decentralize the Bitcoin network."
+    lightning: "The Lightning Network enables fast, low-cost Bitcoin payments by creating off-chain channels—ideal for daily use and micro-transactions.",
+    hardware: "Hardware wallets like Ledger and Trezor store your private keys offline, offering the highest level of security against hacks.",
+    mining: "Bitcoin mining not only mints new coins but also validates transactions and secures the network through proof-of-work.",
+    satoshi: "Satoshi Nakamoto launched Bitcoin in 2009 and mined the first block, the Genesis Block, which contains a message referencing the 2008 bailout.",
+    node: "Running a Bitcoin node gives you full control over your Bitcoin experience and helps verify the blockchain independently.",
+    coldStorage: "Cold storage keeps your Bitcoin private keys offline, protecting them from online attacks.",
+    multiSig: "Multisignature (multisig) wallets require multiple approvals to move funds—ideal for shared custody or added protection.",
+    DCA: "Dollar-cost averaging (DCA) is a strategy of regularly buying Bitcoin over time, regardless of price, to reduce the impact of volatility.",
+    openSource: "Bitcoin’s open-source code invites global collaboration and innovation—anyone can inspect and improve it.",
+    education: "Learning about Bitcoin is the greatest power-up. The more you know, the less likely you are to fall for FUD or scams."
 };
 
 // Initialize game
@@ -136,15 +155,7 @@ function init() {
     canvas.height = CANVAS_HEIGHT;
     
     // Load assets
-    assets.player.src = 'assets/bitcoin_ship.png';
-    assets.bullet.src = 'assets/blockchain_bullet.png';
-    assets.enemies.inflation.src = 'assets/inflation_monster.png';
-    assets.enemies.fud.src = 'assets/fud_cloud.png';
-    assets.enemies.bank.src = 'assets/bank_enemy.png';
-    assets.enemies.regulation.src = 'assets/regulation_barrier.png';
-    assets.enemies.altcoin.src = 'assets/altcoin_enemy.png';
-    assets.powerups.lightning.src = 'assets/lightning_powerup.png';
-    assets.powerups.hardware.src = 'assets/hardware_wallet.png';
+    loadAssets()
     
     // Set up event listeners
     setupEventListeners();
@@ -155,7 +166,32 @@ function init() {
     // Show start screen
     showScreen('start-screen');
 }
-
+function loadAssets() {
+    // Player and bullet assets
+    assets.player.src = 'assets/bitcoin_ship.png';
+    assets.bullet.src = 'assets/blockchain_bullet.png';
+    
+    // Enemy assets
+    assets.enemies.inflation.src = 'assets/inflation_monster.png';
+    assets.enemies.fud.src = 'assets/fud_cloud.png';
+    assets.enemies.bank.src = 'assets/bank_enemy.png';
+    assets.enemies.regulation.src = 'assets/regulation_barrier.png';
+    assets.enemies.altcoin.src = 'assets/altcoin_enemy.png';
+    assets.enemies.volatility.src = 'assets/enemies/volatility.png';
+    assets.enemies.media.src = 'assets/enemies/media.png';
+    assets.enemies.scams.src = 'assets/enemies/scams.png';
+    assets.enemies.energy.src = 'assets/enemies/energy.png';
+    assets.enemies.fear.src = 'assets/enemies/fear.png';
+    
+    // Powerup assets
+    assets.powerups.lightning.src = 'assets/lightning_powerup.png';
+    assets.powerups.hardware.src = 'assets/hardware_wallet.png';
+    assets.powerups.coldStorage.src = 'assets/powerups/coldStorage.png';
+    assets.powerups.multiSig.src = 'assets/powerups/multiSig.png';
+    assets.powerups.DCA.src = 'assets/powerups/DCA.png';
+    assets.powerups.openSource.src = 'assets/powerups/openSource.png';
+    assets.powerups.education.src = 'assets/powerups/education.png';
+}
 // Set up event listeners
 function setupEventListeners() {
     // Keyboard controls
