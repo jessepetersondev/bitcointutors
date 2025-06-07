@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Word Munchers</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+            background-color: #0a1744;
+            color: white;
+            overflow: hidden;
+        }
+        
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        #game-canvas {
+            display: block;
+            margin: 0 auto;
+            border: 4px solid #FF9900;
+            box-sizing: border-box;
+        }
+        
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0a1744;
+            z-index: 10;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        h1 {
+            color: #FF9900;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #00CC00;
+        }
+        
+        button {
+            background-color: #FF9900;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #FFBB33;
+        }
+        
+        #game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 2px solid #FF9900;
+        }
+        
+        #score-container, #level-container {
+            font-size: 1.2em;
+            color: #FF9900;
+        }
+        
+        #lives-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .life-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+        }
+        
+        #current-category {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1em;
+            color: white;
+        }
+        
+        #mobile-controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto 0;
+        }
+        
+        .control-button {
+            background-color: rgba(255, 153, 0, 0.7);
+            border: 2px solid white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            user-select: none;
+            touch-action: none;
+        }
+        
+        #up-button {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        
+        #left-button {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        #right-button {
+            grid-column: 3;
+            grid-row: 2;
+        }
+        
+        #down-button {
+            grid-column: 2;
+            grid-row: 3;
+        }
+        
+        #fact-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            z-index: 100;
+            text-align: center;
+        }
+        
+        #fact-text {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        #instructions-content {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        #instructions-content h2 {
+            color: #FF9900;
+            margin-bottom: 20px;
+        }
+        
+        #instructions-content p {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            
+            #game-info {
+                font-size: 0.8em;
+            }
+            
+            .life-icon {
+                width: 15px;
+                height: 15px;
+            }
+            
+            #current-category {
+                font-size: 0.8em;
+            }
+            
+            #fact-text {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-info">
+            <div id="score-container">Score: <span id="score">0</span></div>
+            <div id="lives-container">Lives: </div>
+            <div id="level-container">Level: <span id="level">1</span></div>
+        </div>
+        <div id="current-category">Munch words related to Bitcoin basics</div>
+        <canvas id="game-canvas"></canvas>
+        <div id="mobile-controls">
+            <div id="up-button" class="control-button">↑</div>
+            <div id="left-button" class="control-button">←</div>
+            <div id="right-button" class="control-button">→</div>
+            <div id="down-button" class="control-button">↓</div>
+        </div>
+    </div>
+    
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen">
+        <h1>BITCOIN<br>WORD<br>MUNCHERS</h1>
+        <h2>Learn about Bitcoin while having fun!</h2>
+        <button id="start-button">Start Game</button>
+        <button id="instructions-button">Instructions</button>
+    </div>
+    
+    <!-- Instructions Screen -->
+    <div id="instructions-screen" class="screen hidden">
+        <div id="instructions-content">
+            <h2>How to Play</h2>
+            <p>Move Bitty (the Bitcoin character) around the grid using arrow keys or touch controls.</p>
+            <p>Munch words that match the category shown at the top of the screen.</p>
+            <p>Avoid the FUD monsters or they'll steal your Bitcoin!</p>
+            <p>Safe squares (blue) protect you from FUD monsters.</p>
+            <p>Complete all levels to become a Bitcoin expert!</p>
+        </div>
+        <button id="back-button">Back to Menu</button>
+    </div>
+    
+    <!-- Level Complete Screen -->
+    <div id="level-complete-screen" class="screen hidden">
+        <h2>Level Complete!</h2>
+        <p>Score: <span id="level-score">0</span></p>
+        <div style="margin: 20px; padding: 15px; background-color: rgba(0, 204, 0, 0.2); border-radius: 10px; max-width: 80%;">
+            <h3>Bitcoin Fact:</h3>
+            <p id="bitcoin-fact"></p>
+        </div>
+        <button id="next-level-button">Next Level</button>
+    </div>
+    
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="screen hidden">
+        <h2>Game Over</h2>
+        <p>Final Score: <span id="final-score">0</span></p>
+        <button id="play-again-button">Play Again</button>
+    </div>
+    
+    <!-- Fact Popup -->
+    <div id="fact-popup" class="hidden">
+        <p id="fact-text"></p>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

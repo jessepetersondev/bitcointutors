@@ -1,0 +1,234 @@
+{
+  "bitcoinBasics": {
+    "category": "Munch words related to Bitcoin basics",
+    "words": [
+      "Bitcoin",
+      "Blockchain",
+      "Wallet",
+      "Mining",
+      "Satoshi",
+      "Node",
+      "Address",
+      "Key",
+      "Halving",
+      "Hash"
+    ],
+    "explanations": {
+      "Bitcoin": "A decentralized digital currency created in 2009.",
+      "Blockchain": "The technology that powers Bitcoin, a distributed ledger of all transactions.",
+      "Wallet": "Software that allows you to store and manage your Bitcoin.",
+      "Mining": "The process of validating transactions and adding them to the blockchain.",
+      "Satoshi": "The smallest unit of Bitcoin, named after its creator Satoshi Nakamoto.",
+      "Node": "A computer that participates in the Bitcoin network by validating transactions.",
+      "Address": "A unique identifier where Bitcoin can be sent, similar to an email address.",
+      "Key": "Cryptographic codes that allow access to your Bitcoin.",
+      "Halving": "An event where Bitcoin mining rewards are cut in half, occurring approximately every four years.",
+      "Hash": "A mathematical function that converts data into a fixed-size string of characters."
+    }
+  },
+  "bitcoinVsFiat": {
+    "category": "Munch words that describe Bitcoin (not fiat money)",
+    "words": [
+      "Decentralized",
+      "Limited",
+      "Borderless",
+      "Permissionless",
+      "Censorship-resistant",
+      "Peer-to-peer"
+    ],
+    "nonMatchingWords": [
+      "Inflationary",
+      "Centralized",
+      "Controlled",
+      "Physical",
+      "Government-issued"
+    ],
+    "explanations": {
+      "Decentralized": "Bitcoin has no central authority controlling it.",
+      "Limited": "Bitcoin has a fixed supply cap of 21 million coins.",
+      "Borderless": "Bitcoin can be sent anywhere in the world without restrictions.",
+      "Permissionless": "Anyone can use Bitcoin without needing approval.",
+      "Censorship-resistant": "No entity can prevent Bitcoin transactions from occurring.",
+      "Peer-to-peer": "Bitcoin allows direct transactions between users without intermediaries."
+    }
+  },
+  "bitcoinNetworkParticipants": {
+    "category": "Munch words that describe Bitcoin network participants",
+    "words": [
+      "Miner",
+      "Node",
+      "Developer",
+      "Holder",
+      "Merchant",
+      "Validator"
+    ],
+    "nonMatchingWords": [
+      "Bank",
+      "Regulator",
+      "Printer",
+      "Middleman",
+      "Broker"
+    ],
+    "explanations": {
+      "Miner": "Someone who uses computing power to secure the Bitcoin network and process transactions.",
+      "Node": "A person running software that validates and relays transactions on the Bitcoin network.",
+      "Developer": "Someone who contributes code to improve the Bitcoin protocol.",
+      "Holder": "A person who owns Bitcoin as a store of value or investment.",
+      "Merchant": "A business or individual who accepts Bitcoin as payment.",
+      "Validator": "Someone who verifies that Bitcoin transactions follow the network's rules."
+    }
+  },
+  "bitcoinSecurityTerms": {
+    "category": "Munch words related to Bitcoin security",
+    "words": [
+      "Private-key",
+      "Seed-phrase",
+      "Cold-storage",
+      "Hardware-wallet",
+      "Multisig",
+      "Encryption"
+    ],
+    "nonMatchingWords": [
+      "Password",
+      "Username",
+      "Email",
+      "Server",
+      "Cloud"
+    ],
+    "explanations": {
+      "Private-key": "A secret code that gives you access to your Bitcoin.",
+      "Seed-phrase": "A series of words that can recover your Bitcoin wallet.",
+      "Cold-storage": "Keeping Bitcoin offline for maximum security.",
+      "Hardware-wallet": "A physical device that securely stores Bitcoin keys offline.",
+      "Multisig": "Requiring multiple signatures to authorize a Bitcoin transaction.",
+      "Encryption": "Converting information into code to prevent unauthorized access."
+    }
+  },
+  "bitcoinTransactionTerms": {
+    "category": "Munch words related to Bitcoin transactions",
+    "words": [
+      "UTXO",
+      "Mempool",
+      "Fee",
+      "Confirmation",
+      "Block",
+      "Script",
+      "Signature",
+      "Input",
+      "Output"
+    ],
+    "nonMatchingWords": [
+      "Receipt",
+      "Invoice",
+      "Refund",
+      "Credit",
+      "Debit"
+    ],
+    "explanations": {
+      "UTXO": "Unspent Transaction Output - the fundamental building block of Bitcoin transactions.",
+      "Mempool": "Where pending Bitcoin transactions wait before being confirmed.",
+      "Fee": "Payment to miners for including your transaction in a block.",
+      "Confirmation": "When a transaction is included in a block and added to the blockchain.",
+      "Block": "A package of transactions that gets added to the blockchain.",
+      "Script": "A simple programming language used in Bitcoin transactions.",
+      "Signature": "Cryptographic proof that you own the Bitcoin you're trying to spend.",
+      "Input": "Bitcoin you're spending in a transaction.",
+      "Output": "Bitcoin you're sending to someone in a transaction."
+    }
+  },
+  "bitcoinLayer2Solutions": {
+    "category": "Munch words related to Bitcoin Layer 2 solutions",
+    "words": [
+      "Lightning",
+      "Channel",
+      "Sidechains",
+      "Liquid",
+      "RSK",
+      "Payment"
+    ],
+    "nonMatchingWords": [
+      "Visa",
+      "PayPal",
+      "Bank",
+      "Cash",
+      "Check"
+    ],
+    "explanations": {
+      "Lightning": "A second-layer network on top of Bitcoin for fast, low-cost transactions.",
+      "Channel": "A connection between two Lightning Network users for multiple transactions.",
+      "Sidechains": "Separate blockchains connected to the main Bitcoin blockchain.",
+      "Liquid": "A sidechain-based settlement network for traders and exchanges.",
+      "RSK": "A smart contract platform secured by the Bitcoin network.",
+      "Payment": "The act of sending Bitcoin to another person or business."
+    }
+  },
+  "bitcoinPrivacyTerms": {
+    "category": "Munch words related to Bitcoin privacy",
+    "words": [
+      "CoinJoin",
+      "Taproot",
+      "Schnorr",
+      "Pseudonymous",
+      "Mixing",
+      "Entropy"
+    ],
+    "nonMatchingWords": [
+      "Anonymous",
+      "Untraceable",
+      "Hidden",
+      "Secret",
+      "Invisible"
+    ],
+    "explanations": {
+      "CoinJoin": "A method for combining multiple Bitcoin payments into a single transaction.",
+      "Taproot": "A Bitcoin upgrade that improves privacy, efficiency, and smart contract capabilities.",
+      "Schnorr": "A type of digital signature that enhances Bitcoin's privacy and efficiency.",
+      "Pseudonymous": "Bitcoin transactions are linked to addresses, not personal identities.",
+      "Mixing": "The process of combining Bitcoin from multiple sources to obscure their origin.",
+      "Entropy": "Randomness collected to generate secure Bitcoin keys."
+    }
+  },
+  "bitcoinMiningTerms": {
+    "category": "Munch words related to Bitcoin mining",
+    "words": [
+      "Hashrate",
+      "Difficulty",
+      "Nonce",
+      "Block-reward",
+      "ASIC",
+      "Pool"
+    ],
+    "nonMatchingWords": [
+      "Digging",
+      "Excavation",
+      "Gold",
+      "Silver",
+      "Copper"
+    ],
+    "explanations": {
+      "Hashrate": "The computing power of the Bitcoin network.",
+      "Difficulty": "How hard it is to find a valid block, adjusts every 2016 blocks.",
+      "Nonce": "A number miners change to try to find a valid block hash.",
+      "Block-reward": "New Bitcoin given to miners for successfully mining a block.",
+      "ASIC": "Application-Specific Integrated Circuit - specialized hardware for Bitcoin mining.",
+      "Pool": "A group of miners who combine their computing power and share rewards."
+    }
+  },
+  "bitcoinFacts": [
+    "Bitcoin has a fixed supply of 21 million coins, making it scarce like gold.",
+    "Bitcoin transactions are verified by a decentralized network of computers around the world.",
+    "The smallest unit of Bitcoin is called a 'satoshi' - there are 100 million satoshis in 1 Bitcoin.",
+    "Bitcoin's blockchain is a public ledger that records all transactions transparently.",
+    "Bitcoin was created in 2009 as a response to the financial crisis.",
+    "Bitcoin's creator, Satoshi Nakamoto, has never been conclusively identified.",
+    "The first Bitcoin transaction was for two pizzas, costing 10,000 BTC (now worth millions).",
+    "Bitcoin mining difficulty adjusts approximately every two weeks to maintain a 10-minute block time.",
+    "Bitcoin has never been hacked - security issues have only affected exchanges and wallets.",
+    "Bitcoin's code is open source, allowing anyone to review and contribute to it.",
+    "Bitcoin transactions are irreversible once confirmed on the blockchain.",
+    "Bitcoin operates 24/7/365, unlike traditional financial systems.",
+    "Bitcoin's price is determined by supply and demand in the market.",
+    "Bitcoin halvings occur approximately every four years, reducing the rate of new supply.",
+    "Running a Bitcoin node gives you full control over your Bitcoin experience."
+  ]
+}
