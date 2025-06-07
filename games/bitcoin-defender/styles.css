@@ -1,3 +1,4 @@
+/* Simplified Bitcoin Defender Game Styles */
 body {
     margin: 0;
     padding: 0;
@@ -153,6 +154,7 @@ button:active {
     display: flex;
     justify-content: space-between;
     z-index: 5;
+    touch-action: none; /* CHANGE: Added to prevent browser gestures on mobile */
 }
 
 #move-left, #move-right {
@@ -162,6 +164,7 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
+    touch-action: none; /* CHANGE: Added to prevent browser gestures on mobile */
 }
 
 #move-left::after {
@@ -181,6 +184,7 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
+    touch-action: none; /* CHANGE: Added to prevent browser gestures on mobile */
 }
 
 #shoot-button::after {
