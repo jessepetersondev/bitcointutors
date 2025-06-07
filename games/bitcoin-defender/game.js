@@ -177,20 +177,20 @@ function loadAssets() {
     assets.enemies.bank.src = 'assets/bank_enemy.png';
     assets.enemies.regulation.src = 'assets/regulation_barrier.png';
     assets.enemies.altcoin.src = 'assets/altcoin_enemy.png';
-    assets.enemies.volatility.src = 'assets/enemies/volatility.png';
-    assets.enemies.media.src = 'assets/enemies/media.png';
-    assets.enemies.scams.src = 'assets/enemies/scams.png';
-    assets.enemies.energy.src = 'assets/enemies/energy.png';
-    assets.enemies.fear.src = 'assets/enemies/fear.png';
+    assets.enemies.volatility.src = 'assets/volatility.png';
+    assets.enemies.media.src = 'assets/media.png';
+    assets.enemies.scams.src = 'assets/scams.png';
+    assets.enemies.energy.src = 'assets/energy.png';
+    assets.enemies.fear.src = 'assets/fear.png';
     
     // Powerup assets
     assets.powerups.lightning.src = 'assets/lightning_powerup.png';
     assets.powerups.hardware.src = 'assets/hardware_wallet.png';
-    assets.powerups.coldStorage.src = 'assets/powerups/coldStorage.png';
-    assets.powerups.multiSig.src = 'assets/powerups/multiSig.png';
-    assets.powerups.DCA.src = 'assets/powerups/DCA.png';
-    assets.powerups.openSource.src = 'assets/powerups/openSource.png';
-    assets.powerups.education.src = 'assets/powerups/education.png';
+    assets.powerups.coldStorage.src = 'assets/powups/coldStorage.png';
+    assets.powerups.multiSig.src = 'assets/multiSig.png';
+    assets.powerups.DCA.src = 'assets/DCA.png';
+    assets.powerups.openSource.src = 'assets/openSource.png';
+    assets.powerups.education.src = 'assets/education.png';
 }
 // Set up event listeners
 function setupEventListeners() {
