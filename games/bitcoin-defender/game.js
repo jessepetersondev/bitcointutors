@@ -6,13 +6,12 @@ const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
 const PLAYER_SPEED = 7; // Increased from 5 for better responsiveness
 const BULLET_SPEED = 10; // Increased from 7 for faster bullets
-const ENEMY_SPEED_MIN = 1.5; // Slightly increased for better challenge
-const ENEMY_SPEED_MAX = 3.5; // Slightly increased for better challenge
+const ENEMY_SPEED_MIN = 1; // Slightly increased for better challenge
+const ENEMY_SPEED_MAX = 3; // Slightly increased for better challenge
 const POWERUP_SPEED = 2.5; // Slightly increased
 const SPAWN_RATE = 60; // Frames between enemy spawns
 const POWERUP_SPAWN_RATE = 300; // Frames between powerup spawns
-const SHOOTING_INTERVAL = 10; // Reduced from 30 for much faster shooting
-const SHOOTING_INTERVAL_POWERED = 5; // Reduced from 12 for lightning powerup
+const LEVEL_DURATION = 120 * 60; // 60 seconds at 120fps
 
 // Game variables
 let canvas, ctx;
