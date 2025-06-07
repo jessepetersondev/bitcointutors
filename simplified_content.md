@@ -1,4 +1,4 @@
-# Bitcoin Newbie - Simplified Lesson Content for 11-12 Year Olds
+# Bitcoin Tutors - Simplified Lesson Content for 11-12 Year Olds
 
 ## Lesson 1: What is Bitcoin?
 Bitcoin is a special kind of digital money that works like online gold. Unlike regular money that banks and governments control, Bitcoin belongs only to the people who own it. It's like having digital coins in your own digital piggy bank that only you can open!
