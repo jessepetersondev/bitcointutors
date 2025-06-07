@@ -4,14 +4,15 @@
 // Game constants
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
-const PLAYER_SPEED = 5;
-const BULLET_SPEED = 7;
-const ENEMY_SPEED_MIN = 1;
-const ENEMY_SPEED_MAX = 3;
-const POWERUP_SPEED = 2;
+const PLAYER_SPEED = 7; // Increased from 5 for better responsiveness
+const BULLET_SPEED = 10; // Increased from 7 for faster bullets
+const ENEMY_SPEED_MIN = 1.5; // Slightly increased for better challenge
+const ENEMY_SPEED_MAX = 3.5; // Slightly increased for better challenge
+const POWERUP_SPEED = 2.5; // Slightly increased
 const SPAWN_RATE = 60; // Frames between enemy spawns
 const POWERUP_SPAWN_RATE = 300; // Frames between powerup spawns
-const LEVEL_DURATION = 60 * 60; // 60 seconds at 60fps
+const SHOOTING_INTERVAL = 10; // Reduced from 30 for much faster shooting
+const SHOOTING_INTERVAL_POWERED = 5; // Reduced from 12 for lightning powerup
 
 // Game variables
 let canvas, ctx;
@@ -24,6 +25,8 @@ let frameCount = 0;
 let levelFrameCount = 0;
 let highScore = localStorage.getItem('bitcoinDefenderHighScore') || 0;
 let soundEnabled = true;
+let isMobileDevice = false;
+let lastShootTime = 0;
 
 // Game objects
 let player = {
@@ -40,6 +43,12 @@ let bullets = [];
 let enemies = [];
 let powerups = [];
 let explosions = [];
+
+// Touch tracking for smoother mobile controls
+let touchStartX = 0;
+let touchMoveX = 0;
+let isTouching = false;
+let isShooting = false;
 
 // Power-up effects
 let powerupEffects = {
@@ -192,28 +201,71 @@ function handleKeyUp(e) {
     }
 }
 
-// Mobile controls setup
+// Mobile controls setup - improved for better responsiveness
 function setupMobileControls() {
     const moveLeft = document.getElementById('move-left');
     const moveRight = document.getElementById('move-right');
     const shootButton = document.getElementById('shoot-button');
     
-    // Touch events for movement
-    moveLeft.addEventListener('touchstart', () => { keys.ArrowLeft = true; });
-    moveLeft.addEventListener('touchend', () => { keys.ArrowLeft = false; });
-    moveRight.addEventListener('touchstart', () => { keys.ArrowRight = true; });
-    moveRight.addEventListener('touchend', () => { keys.ArrowRight = false; });
+    // Touch events for movement with improved tracking
+    moveLeft.addEventListener('touchstart', (e) => { 
+        keys.ArrowLeft = true; 
+        touchStartX = e.touches[0].clientX;
+        isTouching = true;
+        e.preventDefault();
+    });
     
-    // Touch events for shooting
-    shootButton.addEventListener('touchstart', () => { keys[' '] = true; });
-    shootButton.addEventListener('touchend', () => { keys[' '] = false; });
+    moveLeft.addEventListener('touchend', () => { 
+        keys.ArrowLeft = false; 
+        isTouching = false;
+    });
+    
+    moveRight.addEventListener('touchstart', (e) => { 
+        keys.ArrowRight = true; 
+        touchStartX = e.touches[0].clientX;
+        isTouching = true;
+        e.preventDefault();
+    });
+    
+    moveRight.addEventListener('touchend', () => { 
+        keys.ArrowRight = false; 
+        isTouching = false;
+    });
+    
+    // Continuous shooting for mobile
+    shootButton.addEventListener('touchstart', (e) => { 
+        isShooting = true;
+        e.preventDefault();
+    });
+    
+    shootButton.addEventListener('touchend', () => { 
+        isShooting = false;
+    });
+    
+    // Add touch move for smoother control
+    document.addEventListener('touchmove', (e) => {
+        if (isTouching) {
+            touchMoveX = e.touches[0].clientX;
+            // Determine direction based on touch movement
+            if (touchMoveX < touchStartX - 10) {
+                keys.ArrowLeft = true;
+                keys.ArrowRight = false;
+            } else if (touchMoveX > touchStartX + 10) {
+                keys.ArrowRight = true;
+                keys.ArrowLeft = false;
+            }
+            e.preventDefault();
+        }
+    }, { passive: false });
 }
 
 // Check if device is mobile
 function checkMobileDevice() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) {
+    isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobileDevice) {
         document.getElementById('mobile-controls').classList.remove('hidden');
+        // Adjust game settings for mobile
+        player.speed = PLAYER_SPEED * 1.2; // Slightly faster movement on mobile
     }
 }
 
@@ -429,9 +481,13 @@ function updatePlayer() {
         player.x = CANVAS_WIDTH - player.width;
     }
     
-    // Handle shooting
-    if (keys[' '] && frameCount % (powerupEffects.lightningNetwork.active ? 12 : 30) === 0) {
+    // Handle shooting - much faster now
+    const currentTime = Date.now();
+    const shootingDelay = powerupEffects.lightningNetwork.active ? SHOOTING_INTERVAL_POWERED : SHOOTING_INTERVAL;
+    
+    if ((keys[' '] || isShooting) && currentTime - lastShootTime > shootingDelay) {
         shootBullet();
+        lastShootTime = currentTime;
     }
     
     // Update invincibility
@@ -555,24 +611,36 @@ function spawnEnemy() {
 // Get enemy health based on type
 function getEnemyHealth(type) {
     switch (type) {
-        case 'inflation': return 1;
-        case 'fud': return 1;
-        case 'bank': return 2;
-        case 'regulation': return 3;
-        case 'altcoin': return 1;
-        default: return 1;
+        case 'inflation':
+            return 2;
+        case 'fud':
+            return 1;
+        case 'bank':
+            return 3;
+        case 'regulation':
+            return 4;
+        case 'altcoin':
+            return 2;
+        default:
+            return 2;
     }
 }
 
 // Get enemy movement pattern based on type
 function getEnemyMovementPattern(type) {
     switch (type) {
-        case 'inflation': return 'zigzag';
-        case 'fud': return 'horizontal';
-        case 'bank': return 'vertical';
-        case 'regulation': return 'stationary';
-        case 'altcoin': return 'erratic';
-        default: return 'vertical';
+        case 'inflation':
+            return 'straight';
+        case 'fud':
+            return 'zigzag';
+        case 'bank':
+            return 'straight';
+        case 'regulation':
+            return 'straight';
+        case 'altcoin':
+            return 'zigzag';
+        default:
+            return 'straight';
     }
 }
 
@@ -582,51 +650,37 @@ function updateEnemies() {
         const enemy = enemies[i];
         
         // Move enemy based on movement pattern
-        switch (enemy.movementPattern) {
-            case 'zigzag':
-                enemy.x += Math.sin(frameCount * 0.05) * 2;
-                enemy.y += enemy.speed;
-                break;
-            case 'horizontal':
-                enemy.x += Math.sin(frameCount * 0.05) * 4;
-                enemy.y += enemy.speed * 0.7;
-                break;
-            case 'vertical':
-                enemy.y += enemy.speed * 0.8;
-                break;
-            case 'stationary':
-                if (frameCount % 60 === 0) {
-                    enemy.y += enemy.speed * 5;
-                }
-                break;
-            case 'erratic':
-                enemy.x += Math.sin(frameCount * 0.1) * 3;
-                enemy.y += Math.cos(frameCount * 0.1) * 2 + enemy.speed * 0.5;
-                break;
-            default:
-                enemy.y += enemy.speed;
+        if (enemy.movementPattern === 'zigzag') {
+            enemy.x += Math.sin(frameCount * 0.05) * 2;
         }
+        
+        enemy.y += enemy.speed;
         
         // Remove enemies that are off-screen
         if (enemy.y > CANVAS_HEIGHT) {
             enemies.splice(i, 1);
+            // Player loses points when enemy escapes
+            score = Math.max(0, score - 10);
+            updateUI();
         }
     }
 }
 
 // Spawn a powerup
 function spawnPowerup() {
-    const powerupTypes = ['lightning', 'hardware', 'mining', 'satoshi', 'node'];
+    const powerupTypes = ['lightning', 'hardware'];
     const type = powerupTypes[Math.floor(Math.random() * powerupTypes.length)];
     
-    powerups.push({
-        x: Math.random() * (CANVAS_WIDTH - 40),
-        y: -40,
-        width: 40,
-        height: 40,
+    const powerup = {
+        x: Math.random() * (CANVAS_WIDTH - 32),
+        y: -32,
+        width: 32,
+        height: 32,
         type: type,
         speed: POWERUP_SPEED
-    });
+    };
+    
+    powerups.push(powerup);
 }
 
 // Update powerups
@@ -634,7 +688,6 @@ function updatePowerups() {
     for (let i = powerups.length - 1; i >= 0; i--) {
         const powerup = powerups[i];
         
-        // Move powerup
         powerup.y += powerup.speed;
         
         // Remove powerups that are off-screen
@@ -644,16 +697,25 @@ function updatePowerups() {
     }
 }
 
+// Create explosion
+function createExplosion(x, y) {
+    explosions.push({
+        x: x,
+        y: y,
+        size: 1,
+        maxSize: 30,
+        growthRate: 1.5
+    });
+}
+
 // Update explosions
 function updateExplosions() {
     for (let i = explosions.length - 1; i >= 0; i--) {
         const explosion = explosions[i];
         
-        // Update explosion frame
-        explosion.frame++;
+        explosion.size += explosion.growthRate;
         
-        // Remove completed explosions
-        if (explosion.frame >= explosion.maxFrames) {
+        if (explosion.size >= explosion.maxSize) {
             explosions.splice(i, 1);
         }
     }
@@ -661,7 +723,7 @@ function updateExplosions() {
 
 // Check collisions
 function checkCollisions() {
-    // Bullet-enemy collisions
+    // Check bullet-enemy collisions
     for (let i = bullets.length - 1; i >= 0; i--) {
         const bullet = bullets[i];
         
@@ -678,30 +740,26 @@ function checkCollisions() {
                 // If enemy is destroyed
                 if (enemy.health <= 0) {
                     // Add score
-                    const basePoints = getEnemyPoints(enemy.type);
-                    const points = powerupEffects.satoshiWisdom.active ? basePoints * 2 : basePoints;
-                    score += points;
+                    score += getEnemyScore(enemy.type);
                     updateUI();
                     
                     // Create explosion
-                    createExplosion(enemy.x, enemy.y);
-                    
-                    // Show educational popup (10% chance)
-                    if (Math.random() < 0.1) {
-                        showEducationalPopup(enemy.type);
-                    }
+                    createExplosion(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
                     
                     // Remove enemy
                     enemies.splice(j, 1);
+                    
+                    // Show enemy fact
+                    showEnemyFact(enemy.type);
                 }
                 
-                // Break since bullet is gone
+                // Break out of inner loop since bullet is removed
                 break;
             }
         }
     }
     
-    // Player-enemy collisions
+    // Check player-enemy collisions
     if (!player.isInvincible) {
         for (let i = enemies.length - 1; i >= 0; i--) {
             const enemy = enemies[i];
@@ -712,26 +770,24 @@ function checkCollisions() {
                 updateUI();
                 
                 // Create explosion
-                createExplosion(enemy.x, enemy.y);
+                createExplosion(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
                 
                 // Remove enemy
                 enemies.splice(i, 1);
                 
-                // Make player temporarily invincible
+                // Make player invincible for a short time
                 player.isInvincible = true;
-                player.invincibilityTime = 90; // 1.5 seconds at 60fps
+                player.invincibilityTime = 120;
                 
                 // Check game over
                 if (lives <= 0) {
                     gameOver();
                 }
-                
-                break;
             }
         }
     }
     
-    // Player-powerup collisions
+    // Check player-powerup collisions
     for (let i = powerups.length - 1; i >= 0; i--) {
         const powerup = powerups[i];
         
@@ -739,50 +795,38 @@ function checkCollisions() {
             // Apply powerup effect
             applyPowerup(powerup.type);
             
-            // Add score
-            score += 50;
-            updateUI();
-            
             // Remove powerup
             powerups.splice(i, 1);
+            
+            // Show powerup fact
+            showPowerupFact(powerup.type);
         }
     }
 }
 
 // Check if two objects are colliding
 function checkCollision(obj1, obj2) {
-    return (
-        obj1.x < obj2.x + obj2.width &&
-        obj1.x + obj1.width > obj2.x &&
-        obj1.y < obj2.y + obj2.height &&
-        obj1.y + obj1.height > obj2.y
-    );
+    return obj1.x < obj2.x + obj2.width &&
+           obj1.x + obj1.width > obj2.x &&
+           obj1.y < obj2.y + obj2.height &&
+           obj1.y + obj1.height > obj2.y;
 }
 
-// Get points for destroying an enemy
-function getEnemyPoints(type) {
+// Get score value for enemy type
+function getEnemyScore(type) {
     switch (type) {
-        case 'inflation': return 10;
-        case 'fud': return 15;
-        case 'bank': return 25;
-        case 'regulation': return 40;
-        case 'altcoin': return 20;
-        default: return 10;
-    }
-}
-
-// Create an explosion
-function createExplosion(x, y) {
-    explosions.push({
-        x: x,
-        y: y,
-        frame: 0,
-        maxFrames: 10
-    });
-    
-    // Play sound
-    if (soundEnabled) {
-        // Sound effect would be played here
+        case 'inflation':
+            return 20;
+        case 'fud':
+            return 10;
+        case 'bank':
+            return 30;
+        case 'regulation':
+            return 40;
+        case 'altcoin':
+            return 25;
+        default:
+            return 10;
     }
 }
 
@@ -792,71 +836,67 @@ function applyPowerup(type) {
         case 'lightning':
             powerupEffects.lightningNetwork.active = true;
             powerupEffects.lightningNetwork.duration = powerupEffects.lightningNetwork.maxDuration;
-            showEducationalPopup('lightning');
             break;
         case 'hardware':
+            // Gain an extra life
             lives = Math.min(lives + 1, 5);
             updateUI();
-            showEducationalPopup('hardware');
             break;
         case 'mining':
             powerupEffects.miningRig.active = true;
             powerupEffects.miningRig.duration = powerupEffects.miningRig.maxDuration;
-            player.isInvincible = true;
-            player.invincibilityTime = powerupEffects.miningRig.maxDuration;
-            showEducationalPopup('mining');
             break;
         case 'satoshi':
             powerupEffects.satoshiWisdom.active = true;
             powerupEffects.satoshiWisdom.duration = powerupEffects.satoshiWisdom.maxDuration;
-            showEducationalPopup('satoshi');
             break;
         case 'node':
             powerupEffects.nodeBooster.active = true;
             powerupEffects.nodeBooster.duration = powerupEffects.nodeBooster.maxDuration;
-            showEducationalPopup('node');
             break;
     }
     
-    // Play sound
-    if (soundEnabled) {
-        // Sound effect would be played here
+    // Add score for collecting powerup
+    score += 50;
+    updateUI();
+}
+
+// Show enemy fact
+function showEnemyFact(type) {
+    if (Math.random() < 0.2) { // 20% chance to show a fact
+        const fact = enemyFacts[type] || "Bitcoin is a decentralized digital currency.";
+        showPopup(fact);
     }
 }
 
-// Show educational popup
-function showEducationalPopup(type) {
+// Show powerup fact
+function showPowerupFact(type) {
+    const fact = powerupFacts[type] || "Bitcoin is a decentralized digital currency.";
+    showPopup(fact);
+}
+
+// Show popup with text
+function showPopup(text) {
     const popup = document.getElementById('popup');
-    const popupContent = document.getElementById('popup-content');
-    
-    // Set popup content based on type
-    if (type in enemyFacts) {
-        popupContent.textContent = enemyFacts[type];
-    } else if (type in powerupFacts) {
-        popupContent.textContent = powerupFacts[type];
-    } else {
-        return; // Invalid type
-    }
-    
-    // Show popup
+    popup.textContent = text;
     popup.classList.remove('hidden');
     
-    // Hide popup after a delay
+    // Hide popup after a few seconds
     setTimeout(() => {
         popup.classList.add('hidden');
-    }, 2000);
+    }, 3000);
 }
 
 // Check level completion
 function checkLevelCompletion() {
     if (levelFrameCount >= LEVEL_DURATION) {
-        if (level >= 5) {
-            // Game completed
-            victory();
-        } else {
-            // Level completed
+        if (level < 5) {
+            // Show level completion screen
             showScreen('level-screen');
             gameActive = false;
+        } else {
+            // Show victory screen
+            gameVictory();
         }
     }
 }
@@ -874,8 +914,8 @@ function gameOver() {
     showScreen('game-over-screen');
 }
 
-// Victory
-function victory() {
+// Game victory
+function gameVictory() {
     gameActive = false;
     
     // Update high score
@@ -887,31 +927,45 @@ function victory() {
     showScreen('victory-screen');
 }
 
-// Draw functions
+// Draw background
 function drawBackground() {
-    // Simple starfield background
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#000033';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Draw stars
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = '#FFFFFF';
     for (let i = 0; i < 100; i++) {
-        const x = (Math.sin(i * 567 + frameCount * 0.01) * 0.5 + 0.5) * canvas.width;
-        const y = (Math.cos(i * 789 + frameCount * 0.01) * 0.5 + 0.5) * canvas.height;
-        const size = Math.sin(i * 123 + frameCount * 0.01) * 1.5 + 1.5;
+        const x = (Math.sin(i * 0.1 + frameCount * 0.001) * 0.5 + 0.5) * canvas.width;
+        const y = (i / 100 * canvas.height + frameCount * 0.2) % canvas.height;
+        const size = Math.random() * 2 + 1;
         ctx.fillRect(x, y, size, size);
     }
 }
 
+// Draw player
 function drawPlayer() {
-    // Skip drawing if player is invincible and should be blinking
-    if (player.isInvincible && Math.floor(frameCount / 5) % 2 === 0) {
-        return;
+    // Draw player with blinking effect when invincible
+    if (!player.isInvincible || Math.floor(frameCount / 5) % 2 === 0) {
+        ctx.drawImage(assets.player, player.x, player.y, player.width, player.height);
     }
     
-    ctx.drawImage(assets.player, player.x, player.y, player.width, player.height);
+    // Draw power-up effects
+    if (powerupEffects.lightningNetwork.active) {
+        ctx.fillStyle = 'rgba(255, 255, 0, 0.3)';
+        ctx.beginPath();
+        ctx.arc(player.x + player.width / 2, player.y + player.height / 2, player.width * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    if (powerupEffects.nodeBooster.active) {
+        ctx.fillStyle = 'rgba(0, 255, 255, 0.3)';
+        ctx.beginPath();
+        ctx.arc(player.x + player.width / 2, player.y + player.height / 2, player.width * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+    }
 }
 
+// Draw bullets
 function drawBullets() {
     bullets.forEach(bullet => {
         ctx.save();
@@ -922,79 +976,51 @@ function drawBullets() {
     });
 }
 
+// Draw enemies
 function drawEnemies() {
     enemies.forEach(enemy => {
         const enemyImage = assets.enemies[enemy.type];
-        ctx.drawImage(enemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
+        if (enemyImage) {
+            ctx.drawImage(enemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
     });
 }
 
+// Draw powerups
 function drawPowerups() {
     powerups.forEach(powerup => {
         const powerupImage = assets.powerups[powerup.type];
-        ctx.drawImage(powerupImage, powerup.x, powerup.y, powerup.width, powerup.height);
+        if (powerupImage) {
+            ctx.drawImage(powerupImage, powerup.x, powerup.y, powerup.width, powerup.height);
+        }
     });
 }
 
+// Draw explosions
 function drawExplosions() {
     explosions.forEach(explosion => {
-        const size = 64 + explosion.frame * 5;
-        const alpha = 1 - explosion.frame / explosion.maxFrames;
+        const gradient = ctx.createRadialGradient(
+            explosion.x, explosion.y, 0,
+            explosion.x, explosion.y, explosion.size
+        );
         
-        ctx.beginPath();
-        ctx.arc(explosion.x + 32, explosion.y + 32, size / 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 165, 0, ${alpha * 0.7})`;
-        ctx.fill();
+        gradient.addColorStop(0, 'rgba(255, 255, 0, 1)');
+        gradient.addColorStop(0.5, 'rgba(255, 128, 0, 0.8)');
+        gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
         
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(explosion.x + 32, explosion.y + 32, size / 3, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 0, ${alpha})`;
+        ctx.arc(explosion.x, explosion.y, explosion.size, 0, Math.PI * 2);
         ctx.fill();
     });
 }
 
+// Draw effects
 function drawEffects() {
-    // Draw active powerup indicators
-    let y = 50;
-    
-    if (powerupEffects.lightningNetwork.active) {
-        drawPowerupIndicator('Lightning Network', powerupEffects.lightningNetwork.duration, powerupEffects.lightningNetwork.maxDuration, y);
-        y += 30;
-    }
-    
-    if (powerupEffects.miningRig.active) {
-        drawPowerupIndicator('Mining Rig', powerupEffects.miningRig.duration, powerupEffects.miningRig.maxDuration, y);
-        y += 30;
-    }
-    
-    if (powerupEffects.satoshiWisdom.active) {
-        drawPowerupIndicator('Satoshi Wisdom', powerupEffects.satoshiWisdom.duration, powerupEffects.satoshiWisdom.maxDuration, y);
-        y += 30;
-    }
-    
-    if (powerupEffects.nodeBooster.active) {
-        drawPowerupIndicator('Node Booster', powerupEffects.nodeBooster.duration, powerupEffects.nodeBooster.maxDuration, y);
-    }
-}
-
-function drawPowerupIndicator(name, duration, maxDuration, y) {
-    const width = 150;
-    const height = 20;
-    const x = 10;
-    
-    // Draw background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-    ctx.fillRect(x, y, width, height);
-    
-    // Draw progress bar
-    const progress = duration / maxDuration;
+    // Draw level progress bar
+    const progressWidth = (levelFrameCount / LEVEL_DURATION) * canvas.width;
     ctx.fillStyle = '#f7931a';
-    ctx.fillRect(x, y, width * progress, height);
-    
-    // Draw text
-    ctx.fillStyle = '#fff';
-    ctx.font = '12px Arial';
-    ctx.fillText(name, x + 5, y + 15);
+    ctx.fillRect(0, 0, progressWidth, 5);
 }
 
 // Initialize the game when the page loads
